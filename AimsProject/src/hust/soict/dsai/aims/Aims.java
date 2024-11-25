@@ -1,27 +1,62 @@
-package hust.soict.dsai.aims;
+package hust.soict.dsai.aims; // Package chính của bài tập
 
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.cart.Cart; // Import lớp Cart
+import hust.soict.dsai.aims.disc.DigitalVideoDisc; // Import lớp DigitalVideoDisc
 
 public class Aims {
     public static void main(String[] args) {
-        //Tạo giỏ hàng trống
-        Cart anOrder = new Cart();
+        // Tạo đối tượng giỏ hàng
+        Cart cart = new Cart();
 
-        //Thêm đĩa vào giỏ hàng
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation","Roger Allers",87,19.95f);
-        anOrder.addDigitalVideoDisc(dvd1);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star wars","Science Fiction", "Geogre Lucas",87,24.95f);
-        anOrder.addDigitalVideoDisc(dvd2);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin","Animation",18.99f);
-        anOrder.addDigitalVideoDisc(dvd3);
+        // Tạo một số DVD và thêm vào giỏ hàng
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 124, 24.95f);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "John Musker", 90, 18.99f);
+        DigitalVideoDisc dvd4 = new DigitalVideoDisc("Zero Length DVD", "Experiment", "Unknown", 0, 5.99f); // DVD không có nội dung
+        DigitalVideoDisc dvd5 = new DigitalVideoDisc("Aladdin");
 
-        //Kiểm tra khi chưa thực hiện hàm xoá
-        anOrder.print();
+        // Hiển thị thông tin từng DVD
+       // dvd1.printInfo();
+       // dvd2.printInfo();
+       // dvd3.printInfo();
+      //  dvd4.printInfo();
+       // dvd5.printInfo();
 
-        //Kiểm tra khi dã thực hiện hàm xoá
-        anOrder.removeDigitalVideoDisc(dvd2);
-        
-        System.out.printf("Total cost is: %.2f",anOrder.totalCost());
+        // Thêm các DVD vào giỏ hàng
+        cart.addDigitalVideoDisc(dvd1);
+        cart.addDigitalVideoDisc(dvd2, dvd3);
+        cart.addDigitalVideoDisc(dvd4, dvd5);
+
+        // Hiển thị giỏ hàng
+        System.out.println("\nGiỏ hàng:");
+        cart.print();
+
+        // Tính và hiển thị tổng chi phí
+        System.out.println("\nTổng chi phí: $" + cart.totalCost());
+
+        // Tìm kiếm DVD theo ID
+        System.out.println("\nTìm kiếm DVD theo ID:");
+        cart.searchById(2); // Tìm thấy
+        cart.searchById(10); // Không tìm thấy
+
+        // Tìm kiếm DVD theo tiêu đề
+        System.out.println("\nTìm kiếm DVD theo tiêu đề:");
+        cart.searchByTitle("Aladdin"); // Tìm thấy
+        cart.searchByTitle("Frozen");  // Không tìm thấy
+
+        // Xóa một DVD khỏi giỏ hàng
+        System.out.println("\nXóa DVD khỏi giỏ hàng:");
+        cart.removeDigitalVideoDisc(dvd2); // Xóa DVD "Star Wars"
+        cart.print();
+
+        // Hiển thị giỏ hàng đã sắp xếp theo tiêu đề
+      //  System.out.println("\nSắp xếp giỏ hàng theo tiêu đề:");
+      //  cart.sortByTitle();
+      //  cart.print();
+
+        // Hiển thị giỏ hàng đã sắp xếp theo giá
+     //   System.out.println("\nSắp xếp giỏ hàng theo giá:");
+     //   cart.sortByCost();
+      //  cart.print();
     }
 }
