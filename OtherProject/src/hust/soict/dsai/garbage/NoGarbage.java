@@ -1,22 +1,18 @@
 package hust.soict.dsai.garbage;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+package hust.soict.dsai.garbage;
 
 public class NoGarbage {
-    public static void main(String[] args) throws IOException {
-        String filename = "test.txt";
-        byte[] inputBytes = { 0 };
-        long startTime, endTime;
-
-        inputBytes = Files.readAllBytes(Paths.get(filename));
-        startTime = System.currentTimeMillis();
-        StringBuilder outputStringBuilder = new StringBuilder("");
-        for(byte b : inputBytes) {
-            outputStringBuilder.append((char)b);
+    public static void main(String[] args) {
+        StringBuffer result = new StringBuffer();
+        long startTime = System.nanoTime();
+        
+        // Sử dụng StringBuffer để nối chuỗi, tránh việc tạo "rác"
+        for (int i = 0; i < 100000; i++) {
+            result.append("Some string to add garbage " + i + " ");
         }
-        endTime = System.currentTimeMillis();
-        System.out.println(endTime - startTime);
+
+        long endTime = System.nanoTime();
+        System.out.println("Time taken with StringBuffer: " + (endTime - startTime) + " ns");
     }
 }
