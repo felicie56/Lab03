@@ -1,26 +1,22 @@
-package OtherProjects.hust.soict.dsai.garbage;
+package hust.soict.dsai.garbage;
 
-import java.util.Random;
+import static java.lang.System.currentTimeMillis;
+import java.util.Random; //Lam cho code ngan gon hon thay vi goi nguyen phuong thuc ay
 
 public class ConcatenationInLoops {
     public static void main(String[] args) {
         Random r = new Random(123);
-
-        long start = System.currentTimeMillis();
-        @SuppressWarnings("unused")
+        long start = currentTimeMillis();
         String s = "";
-        for (int i = 0; i < 65536; i++) {
-            s += r.nextInt(2);
-        }
-        System.out.println("String concatenation: " + (System.currentTimeMillis() - start) + " ms");
+        for (int i = 0;i < 65536;i++) s += r.nextInt(2);
+        System.out.println(currentTimeMillis() - start);
 
         r = new Random(123);
         start = System.currentTimeMillis();
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 65536; i++) {
+        for(int i = 0;i < 65536;i++)
             sb.append(r.nextInt(2));
-        }
-        System.out.println("StringBuilder concatenation: " + (System.currentTimeMillis() - start) + " ms");
-
+        s += sb.toString();
+        System.out.println(System.currentTimeMillis() - start);
     }
 }
