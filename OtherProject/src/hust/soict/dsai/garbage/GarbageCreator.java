@@ -1,21 +1,16 @@
 package hust.soict.dsai.garbage;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 public class GarbageCreator {
-    public static void main(String[] args) throws IOException {
-        String filename = "test.txt";
-        byte[] inputBytes = { 0 };
-        long startTime, endTime;
-        inputBytes = Files.readAllBytes(Paths.get(filename));
-        startTime = System.currentTimeMillis();
-        String outputString = "";
-        for(byte b : inputBytes) {
-            outputString += (char)b;
+    public static void main(String[] args) {
+        String result = "";
+        long startTime = System.nanoTime();
+        
+        // Tạo "rác" bằng cách nối chuỗi sử dụng toán tử '+'
+        for (int i = 0; i < 100000; i++) {
+            result += "Some string to add garbage " + i + " ";
         }
-        endTime = System.currentTimeMillis();
-        System.out.println(endTime - startTime);
+
+        long endTime = System.nanoTime();
+        System.out.println("Time taken with + operator: " + (endTime - startTime) + " ns");
     }
 }
