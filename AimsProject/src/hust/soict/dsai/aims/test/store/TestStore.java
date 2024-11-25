@@ -1,25 +1,49 @@
-package hust.soict.dsai.test.store;
+package hust.soict.dsai.aims.store;
 import hust.soict.dsai.aims.disc.DigitalVideoDisc;
-import hust.soict.dsai.aims.store.Store;
+import java.util.LinkedList;
 
-public class TestStore {
-    public static void main(String[] args) {
-        Store store = new Store();
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation",
-                "Roger Allers", 87, 19.95f);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star wars", "Science Fiction",
-                "Geogre Lucas", 87, 24.95f);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
-        store.addDVD(dvd3);
+public class Store {
+    private LinkedList<DigitalVideoDisc> itemsInStore = new LinkedList<DigitalVideoDisc>();
 
-        System.out.println(store.toString());
 
-        store.removeDVD(dvd1);
-        store.removeDVD(dvd2);
-        store.removeDVD(dvd3);
+    private boolean checkDVD(DigitalVideoDisc disc) {
+        for (DigitalVideoDisc digitalVideoDisc : itemsInStore) {
+            if (digitalVideoDisc.equals(disc)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        System.out.println(store.toString());
+    public void removeDVD(DigitalVideoDisc disc) {
+        if(checkDVD(disc)) {
+            itemsInStore.remove(disc);
+            System.out.println( disc.getTitle() + " 've been deleted from the store !");
+        } else {
+            System.out.println("There is no "+ disc.getTitle() + " in the store !");
+        }
+    }
+
+    public void addDVD(DigitalVideoDisc disc) {
+        if(!checkDVD(disc)) {
+            itemsInStore.add(disc);
+            System.out.println( disc.getTitle() + " 've been added to the store !");
+        } else {
+            System.out.println( disc.getTitle() + " 'already exists in the store !");
+        }
+
+    }
+
+    @Override //Dinh nghia lai phuong thuc trong lop Object cua thu vien java.lang
+    public String toString() {
+        StringBuilder string = new StringBuilder("****************STORE***************\nitems in the store: \n");
+        if(itemsInStore.isEmpty()) string.append("There is no dvd in the store !\n");
+        else {
+            for (DigitalVideoDisc dvd : itemsInStore) {
+                string.append(dvd.getTitle() + " - " + dvd.getCost() + " $\n");
+            }
+        }
+        string.append("***************************************");
+        return string.toString();
     }
 }
