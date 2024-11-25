@@ -32,7 +32,7 @@ Tuy nhiên, các thay đổi này chỉ ảnh hưởng đến các bản sao tha
 Sau khi phương thức swap kết thúc, các tham chiếu cục bộ (o1 và o2) bị loại bỏ, và không có thay đổi nào được thực hiện trên các đối tượng hoặc tham chiếu gốc (jungleDVD và cinderellaDVD).
 Do đó, tiêu đề của jungleDVD và cinderellaDVD vẫn giữ nguyên như trước khi gọi phương thức swap.
 
-3.
+3. After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
 
 Lý do tiêu đề của jungleDVD thay đổi sau khi gọi phương thức changeTitle(jungleDVD, cinderellaDVD.getTitle()) là vì bạn đang thay đổi trực tiếp thuộc tính của đối tượng jungleDVD.
 
