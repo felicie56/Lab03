@@ -1,4 +1,3 @@
-package hust.soict.dsai.garbage;
 
 package hust.soict.dsai.garbage;
 
