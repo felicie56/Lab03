@@ -1,21 +1,21 @@
-package OtherProjects.hust.soict.dsai.garbage;
+package hust.soict.dsai.garbage;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class GarbageCreator {
-    public static void main(String[] args) throws Exception {
-        String filename = "C:\\Users\\ADMIN\\Downloads\\Documents\\large_file.txt"; // Đường dẫn file lớn
-        byte[] inputBytes = Files.readAllBytes(Paths.get(filename));
-
-        long startTime = System.currentTimeMillis();
-        @SuppressWarnings("unused")
+    public static void main(String[] args) throws IOException {
+        String filename = "test.txt";
+        byte[] inputBytes = { 0 };
+        long startTime, endTime;
+        inputBytes = Files.readAllBytes(Paths.get(filename));
+        startTime = System.currentTimeMillis();
         String outputString = "";
-        for (byte b : inputBytes) {
-            outputString += (char) b;
+        for(byte b : inputBytes) {
+            outputString += (char)b;
         }
-        long endTime = System.currentTimeMillis();
-
-        System.out.println("Time taken with String concatenation: " + (endTime - startTime) + " ms");
+        endTime = System.currentTimeMillis();
+        System.out.println(endTime - startTime);
     }
 }
