@@ -64,4 +64,15 @@ public class DigitalVideoDisc {
     public void setDirector(String directorSet){ director = directorSet; }
     public void setLength(int lengthSet){ length = lengthSet; }
     public void setCost(float costSet){ cost = costSet; }
+
+    @Override
+public String toString() {
+    return "ID: " + id +
+           ", Title: " + title +
+           ", Category: " + category +
+           ", Director: " + director +
+           ", Length: " + length + " mins" +
+           ", Cost: $" + cost;
 }
+}
+
