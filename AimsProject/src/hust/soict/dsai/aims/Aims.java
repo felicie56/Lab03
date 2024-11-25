@@ -16,11 +16,12 @@ public class Aims {
         DigitalVideoDisc dvd5 = new DigitalVideoDisc("Aladdin");
 
         // Hiển thị thông tin từng DVD
-       // dvd1.printInfo();
-       // dvd2.printInfo();
-       // dvd3.printInfo();
-      //  dvd4.printInfo();
-       // dvd5.printInfo();
+        System.out.println(dvd1.toString());
+        System.out.println(dvd2.toString());
+        System.out.println(dvd3.toString());
+        System.out.println(dvd4.toString());
+        System.out.println(dvd5.toString());
+        
 
         // Thêm các DVD vào giỏ hàng
         cart.addDigitalVideoDisc(dvd1);
@@ -50,13 +51,13 @@ public class Aims {
         cart.print();
 
         // Hiển thị giỏ hàng đã sắp xếp theo tiêu đề
-      //  System.out.println("\nSắp xếp giỏ hàng theo tiêu đề:");
-      //  cart.sortByTitle();
-      //  cart.print();
+        System.out.println("\nSắp xếp giỏ hàng theo tiêu đề:");
+        cart.sortByTitle();
+        cart.print();
 
         // Hiển thị giỏ hàng đã sắp xếp theo giá
-     //   System.out.println("\nSắp xếp giỏ hàng theo giá:");
-     //   cart.sortByCost();
-      //  cart.print();
+       System.out.println("\nSắp xếp giỏ hàng theo giá:");
+        cart.sortByCost();
+        cart.print();
     }
 }
