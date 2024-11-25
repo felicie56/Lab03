@@ -122,4 +122,31 @@ public class Cart {
         }
         System.out.println("No match found !");
     }
+    public void sortByTitle() {
+        for (int i = 0; i < qtyOrdered - 1; i++) {
+            for (int j = i + 1; j < qtyOrdered; j++) {
+                if (itemsOrdered[i].getTitle().compareTo(itemsOrdered[j].getTitle()) > 0) {
+                    // Hoán đổi vị trí
+                    DigitalVideoDisc temp = itemsOrdered[i];
+                    itemsOrdered[i] = itemsOrdered[j];
+                    itemsOrdered[j] = temp;
+                }
+            }
+        }
+        System.out.println("Cart sorted by title.");
+    }
+    public void sortByCost() {
+        for (int i = 0; i < qtyOrdered - 1; i++) {
+            for (int j = i + 1; j < qtyOrdered; j++) {
+                if (itemsOrdered[i].getCost() > itemsOrdered[j].getCost()) {
+                    // Hoán đổi vị trí
+                    DigitalVideoDisc temp = itemsOrdered[i];
+                    itemsOrdered[i] = itemsOrdered[j];
+                    itemsOrdered[j] = temp;
+                }
+            }
+        }
+        System.out.println("Cart sorted by cost.");
+    }
+    
 }
