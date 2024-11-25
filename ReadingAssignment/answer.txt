@@ -1,0 +1,60 @@
+Câu hỏi :
+1. Is JAVA a Pass by Value or a Pass by Reference programming language? 
+Java là một ngôn ngữ lập trình truyền theo giá trị (Pass by Value). Tuy nhiên, điều này có thể gây nhầm lẫn vì Java sử dụng "Pass by Value" cho cả kiểu dữ liệu cơ bản (primitive types) và đối tượng (objects), nhưng cách thức hoạt động lại khác nhau.
+
+Đối với kiểu dữ liệu cơ bản: Java truyền giá trị thực tế của biến. Khi bạn truyền một biến kiểu nguyên thủy (ví dụ: int, float, char) vào một phương thức, một bản sao của giá trị được tạo ra và truyền vào phương thức đó. Do đó, bất kỳ sự thay đổi nào đối với giá trị trong phương thức không ảnh hưởng đến giá trị của biến ban đầu.
+
+Đối với đối tượng: Java truyền giá trị của tham chiếu đến đối tượng, không phải chính đối tượng. Điều này có nghĩa là khi bạn truyền một đối tượng vào phương thức, tham chiếu (reference) đến đối tượng đó được sao chép và truyền vào phương thức. Do đó, bạn có thể thay đổi nội dung của đối tượng trong phương thức. Tuy nhiên, nếu bạn thay đổi tham chiếu (ví dụ, gán lại đối tượng cho một đối tượng khác), điều đó sẽ không ảnh hưởng đến đối tượng ban đầu bên ngoài phương thức.
+
+Vì vậy, Java luôn truyền theo giá trị, nhưng đối với các đối tượng, giá trị được truyền là tham chiếu, không phải chính đối tượng.
+
+2. After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+Lý do tiêu đề của hai đối tượng DigitalVideoDisc (jungleDVD và cinderellaDVD) vẫn không thay đổi sau khi gọi phương thức swap(jungleDVD, cinderellaDVD) là do Java sử dụng cơ chế truyền tham trị (pass-by-value) cho các tham số của phương thức. 
+
++ Java Truyền Tham Chiếu Đối Tượng Bằng Giá Trị
+Trong Java, khi bạn truyền một đối tượng vào một phương thức, thứ được truyền là bản sao của tham chiếu đến đối tượng, chứ không phải tham chiếu thực sự.
+Trong phương thức swap, hai bản sao tham chiếu cục bộ (o1 và o2) được tạo. Các tham chiếu này là bản sao của tham chiếu gốc (jungleDVD và cinderellaDVD) trong phương thức gọi.
++ Hoán Đổi Chỉ Diễn Ra Trên Các Tham Chiếu Cục Bộ
+Trong phương thức swap:
+
+public static void swap(Object o1, Object o2) {
+    Object tmp = o1;
+    o1 = o2;
+    o2 = tmp;
+}
+
+Một biến cục bộ tmp được tạo để tạm thời lưu giá trị của o1 (tham chiếu đến jungleDVD).
+Giá trị của o2 (tham chiếu đến cinderellaDVD) được gán cho o1.
+Giá trị của tmp (tham chiếu ban đầu của o1) được gán cho o2.
+Tuy nhiên, các thay đổi này chỉ ảnh hưởng đến các bản sao tham chiếu cục bộ (o1 và o2) trong phương thức swap. Các tham chiếu gốc (jungleDVD và cinderellaDVD) trong phương thức gọi không bị thay đổi.
+
++ Các Tham Chiếu Gốc Vẫn Giữ Nguyên
+Sau khi phương thức swap kết thúc, các tham chiếu cục bộ (o1 và o2) bị loại bỏ, và không có thay đổi nào được thực hiện trên các đối tượng hoặc tham chiếu gốc (jungleDVD và cinderellaDVD).
+Do đó, tiêu đề của jungleDVD và cinderellaDVD vẫn giữ nguyên như trước khi gọi phương thức swap.
+
+3.
+
+Lý do tiêu đề của jungleDVD thay đổi sau khi gọi phương thức changeTitle(jungleDVD, cinderellaDVD.getTitle()) là vì bạn đang thay đổi trực tiếp thuộc tính của đối tượng jungleDVD.
+
++ Java Truyền Tham Chiếu Đối Tượng Bằng Giá Trị
+Khi bạn truyền một đối tượng (jungleDVD) vào phương thức, Java truyền bản sao của tham chiếu đến đối tượng đó.
+Trong phương thức changeTitle, bạn không làm thay đổi tham chiếu gốc, nhưng bạn sử dụng bản sao tham chiếu này để thao tác trực tiếp trên đối tượng gốc.
++ Cách changeTitle Thực Hiện Thay Đổi
+Phương thức changeTitle:
+
+public static void changeTitle(DigitalVideoDisc dvd, String title) {
+    String oldTitle = dvd.getTitle();
+    dvd.setTitle(title); // Thay đổi trực tiếp thuộc tính của đối tượng
+    dvd = new DigitalVideoDisc(oldTitle); // Tham chiếu này chỉ cục bộ và không ảnh hưởng đến tham chiếu gốc
+}
+Dòng dvd.setTitle(title):
+
+Gọi phương thức setTitle trên đối tượng được tham chiếu bởi dvd.
+Vì dvd là bản sao của tham chiếu đến jungleDVD, thao tác này thay đổi trực tiếp thuộc tính title của đối tượng gốc jungleDVD.
+Dòng dvd = new DigitalVideoDisc(oldTitle):
+
+Tham chiếu cục bộ dvd được gán cho một đối tượng mới, nhưng điều này không ảnh hưởng đến tham chiếu ban đầu (jungleDVD) trong phương thức gọi.
+Do đó, đối tượng jungleDVD ban đầu vẫn bị thay đổi.
++ Kết Quả: jungleDVD Bị Thay Đổi
+Tiêu đề của jungleDVD thay đổi vì phương thức setTitle trực tiếp cập nhật thuộc tính title của đối tượng được tham chiếu bởi dvd.
+Việc tạo đối tượng mới trong dvd = new DigitalVideoDisc(oldTitle) chỉ ảnh hưởng đến tham chiếu cục bộ dvd và không liên quan đến jungleDVD.
