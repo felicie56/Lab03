@@ -1,4 +1,4 @@
-package hust.soict.dsai.garbage;
+package hust.soict.globalict.garbage;
 
 import static java.lang.System.currentTimeMillis;
 import java.util.Random; //Lam cho code ngan gon hon thay vi goi nguyen phuong thuc ay
